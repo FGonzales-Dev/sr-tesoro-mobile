@@ -8,7 +8,7 @@ class AuthRepositoryImpl implements LoginUseCase {
   AuthRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<User> login(String username, String password) async {
-    return await remoteDataSource.login(username, password);
+  Future<User> login(String patientAccountId, String password) async {
+    return await remoteDataSource.login(patientAccountId, password);
   }
 }

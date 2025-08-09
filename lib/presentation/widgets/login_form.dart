@@ -13,7 +13,7 @@ class LoginForm extends ConsumerStatefulWidget {
 
 class _LoginFormState extends ConsumerState<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-  String _username = '';
+  String _patientAccountId = '';
   String _password = '';
 
   @override
@@ -25,9 +25,9 @@ class _LoginFormState extends ConsumerState<LoginForm> {
         mainAxisSize: MainAxisSize.min,
         children: [
           TextFormField(
-            decoration: const InputDecoration(labelText: 'Username'),
-            onChanged: (value) => _username = value,
-            validator: (value) => value == null || value.isEmpty ? 'Enter username' : null,
+            decoration: const InputDecoration(labelText: 'Patient Account ID'),
+            onChanged: (value) => _patientAccountId = value,
+            validator: (value) => value == null || value.isEmpty ? 'Enter patient account ID' : null,
           ),
           TextFormField(
             decoration: const InputDecoration(labelText: 'Password'),
@@ -41,7 +41,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                 ? null
                 : () async {
                     if (_formKey.currentState!.validate()) {
-                      await ref.read(loginViewModelProvider.notifier).login(_username, _password);
+                      await ref.read(loginViewModelProvider.notifier).login(_patientAccountId, _password);
                       final user = ref.read(loginViewModelProvider);
                       if (user.value != null && widget.onLoginSuccess != null) {
                         widget.onLoginSuccess!();

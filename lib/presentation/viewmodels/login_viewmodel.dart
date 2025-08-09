@@ -9,10 +9,10 @@ class LoginViewModel extends StateNotifier<AsyncValue<User?>> {
 
   LoginViewModel(this.loginUseCase) : super(const AsyncValue.data(null));
 
-  Future<void> login(String username, String password) async {
+  Future<void> login(String patientAccountId, String password) async {
     state = const AsyncValue.loading();
     try {
-      final user = await loginUseCase.login(username, password);
+      final user = await loginUseCase.login(patientAccountId, password);
       _accessToken = user.accessToken;
       state = AsyncValue.data(user);
     } catch (e, st) {
