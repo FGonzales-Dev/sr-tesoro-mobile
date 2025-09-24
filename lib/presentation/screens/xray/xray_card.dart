@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
-import '../../../domain/entities/ecg_record.dart';
-import '../../../core/utils/date_utils.dart';
-import 'ecg_detail_screen.dart';
+import '../../../../domain/entities/xray.dart';
+import '../../../../core/utils/date_utils.dart';
 
-class EcgCard extends StatelessWidget {
-  final EcgRecord record;
+class XrayCard extends StatelessWidget {
+  final Xray xray;
+  final VoidCallback onTap;
 
-  const EcgCard({
+  const XrayCard({
     Key? key,
-    required this.record,
+    required this.xray,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => EcgDetailScreen(record: record),
-          ),
-        );
-      },
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
           children: [
-            // Left side - ECG information
+            // Left side - X-ray information
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +29,7 @@ class EcgCard extends StatelessWidget {
                   _buildInfoRow(
                     icon: Icons.calendar_today,
                     label: 'Date',
-                    value: AppDateUtils.formatDate(record.createdAt),
+                    value: AppDateUtils.formatDateString(xray.createdAt),
                   ),
                   const SizedBox(height: 8),
                   
@@ -43,7 +37,7 @@ class EcgCard extends StatelessWidget {
                   _buildInfoRow(
                     icon: Icons.person,
                     label: 'Doctor',
-                    value: record.doctorName,
+                    value: xray.doctorName,
                   ),
                   const SizedBox(height: 8),
                   
@@ -51,8 +45,8 @@ class EcgCard extends StatelessWidget {
                   _buildInfoRow(
                     icon: Icons.info,
                     label: 'Status',
-                    value: record.status,
-                    valueColor: _getStatusColor(record.status),
+                    value: xray.status,
+                    valueColor: _getStatusColor(xray.status),
                   ),
                 ],
               ),
@@ -113,10 +107,10 @@ class EcgCard extends StatelessWidget {
         return Colors.green;
       case 'pending':
         return Colors.orange;
-      case 'for_reading':
+      case 'in_progress':
         return Colors.blue;
       default:
-        return Colors.black87;
+        return Colors.grey;
     }
   }
 }

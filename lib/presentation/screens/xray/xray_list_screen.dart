@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../providers/providers.dart';
 import '../../../../domain/entities/xray.dart';
 import 'xray_detail_screen.dart';
+import 'xray_card.dart';
 
 class XrayListScreen extends ConsumerStatefulWidget {
   const XrayListScreen({Key? key}) : super(key: key);
@@ -42,10 +43,6 @@ class _XrayListScreenState extends ConsumerState<XrayListScreen> {
     print('Xray List build - State: ${xrayState.runtimeType}');
     
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF153846),
-        foregroundColor: Colors.white,
-      ),
       body: xrayState.when(
         data: (xrays) => xrays.isEmpty
             ? const Center(
@@ -63,29 +60,15 @@ class _XrayListScreenState extends ConsumerState<XrayListScreen> {
                 itemCount: xrays.length,
                 itemBuilder: (context, index) {
                   final xray = xrays[index];
-                  return Card(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    child: ListTile(
-                      leading: const Icon(Icons.medical_services, color: Color(0xFF153846)),
-                      title: Text('X-ray #${xray.xrayNumber}'),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Type: ${xray.xrayTypeName}'),
-                          Text('Doctor: ${xray.doctorName}'),
-                          Text('Status: ${xray.status}'),
-                          Text('Date: ${xray.createdAt.split('T')[0]}'),
-                        ],
-                      ),
-                      trailing: const Icon(Icons.arrow_forward_ios),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => XrayDetailScreen(xray: xray),
-                          ),
-                        );
-                      },
-                    ),
+                  return XrayCard(
+                    xray: xray,
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => XrayDetailScreen(xray: xray),
+                        ),
+                      );
+                    },
                   );
                 },
               ),
