@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stmdc_patient_app/providers/viewmodel_providers.dart';
+import '../../../providers/providers.dart';
 import 'ecg_detail_screen.dart';
 
 class EcgTab extends ConsumerStatefulWidget {
