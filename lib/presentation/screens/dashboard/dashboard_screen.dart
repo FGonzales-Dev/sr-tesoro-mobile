@@ -19,7 +19,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     const XrayTab(),
     const LabTestTab(),
     const ConsultationTab(),
-    const Center(child: Text('Profile', style: TextStyle(fontSize: 32))),
   ];
 
   void _onItemTapped(int index) {
@@ -31,7 +30,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Dashboard')),
+      appBar: AppBar(
+        title: const Text('STMDC Patient App'),
+        backgroundColor: const Color(0xFF153846),
+        foregroundColor: Colors.white,
+        actions: [
+          // Profile section in header
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const CircleAvatar(
+                  radius: 16,
+                  backgroundColor: Colors.white,
+                  child: Icon(
+                    Icons.person,
+                    color: Color(0xFF153846),
+                    size: 20,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color(0xFF153846),
@@ -43,7 +66,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.medical_services), label: 'X-ray'),
           BottomNavigationBarItem(icon: Icon(Icons.science), label: 'Lab Test'),
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Consultation'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
