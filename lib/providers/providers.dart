@@ -4,6 +4,9 @@ export 'core/dio_provider.dart';
 // Auth providers
 export 'auth/auth_viewmodel_provider.dart';
 
+// Patient providers
+export 'patient/patient_providers.dart';
+
 // ECG providers
 export 'ecg/ecg_viewmodel_provider.dart';
 

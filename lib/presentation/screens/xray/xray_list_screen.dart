@@ -43,7 +43,6 @@ class _XrayListScreenState extends ConsumerState<XrayListScreen> {
     
     return Scaffold(
       appBar: AppBar(
-        title: const Text('X-ray Records'),
         backgroundColor: const Color(0xFF153846),
         foregroundColor: Colors.white,
       ),
