@@ -82,9 +82,9 @@ class EcgDetailScreen extends StatelessWidget {
             
             const SizedBox(height: 16),
             
-            // ECG Measurements Section
+           
             const Text(
-              'ECG Measurements',
+              'Clinical Measurements',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -97,23 +97,22 @@ class EcgDetailScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
-                    _buildMeasurementRow('Heart Rate', '${record.heartRate} BPM', Icons.favorite, Colors.red),
+                    _buildMeasurementRow('Heart Rate', '${record.heartRate} BPM', Theme.of(context).colorScheme.onSurface),
                     const Divider(),
-                    _buildMeasurementRow('QRS Axis', record.qrsAxis, Icons.trending_up, Colors.blue),
+                    _buildMeasurementRow('QRS Axis', record.qrsAxis, Theme.of(context).colorScheme.onSurface),
                     const Divider(),
-                    _buildMeasurementRow('PR Interval', '${record.prInterval} ms', Icons.timeline, Colors.green),
+                    _buildMeasurementRow('PR Interval', '${record.prInterval}', Theme.of(context).colorScheme.onSurface),
                     const Divider(),
-                    _buildMeasurementRow('QRS Duration', '${record.qrsDuration} ms', Icons.timeline, Colors.orange),
+                    _buildMeasurementRow('QRS Duration', '${record.qrsDuration}', Theme.of(context).colorScheme.onSurface),
                     const Divider(),
-                    _buildMeasurementRow('QT Interval', '${record.qtInterval} ms', Icons.timeline, Colors.purple),
+                    _buildMeasurementRow('QT Interval', '${record.qtInterval}', Theme.of(context).colorScheme.onSurface),
                   ],
                 ),
               ),
             ),
             
             const SizedBox(height: 16),
-            
-            // Interpretation Section
+          
             if (record.interpretation.isNotEmpty) ...[
               const Text(
                 'Interpretation',
@@ -129,20 +128,7 @@ class EcgDetailScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.medical_services, color: Colors.blue),
-                          const SizedBox(width: 8),
-                          const Text(
-                            'Doctor\'s Interpretation',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
+                     
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
@@ -164,7 +150,7 @@ class EcgDetailScreen extends StatelessWidget {
             
             const SizedBox(height: 16),
             
-            // ECG Report Section
+           
             if (record.ecgReport.isNotEmpty) ...[
               const Text(
                 'ECG Report',
@@ -182,8 +168,6 @@ class EcgDetailScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const Icon(Icons.description, color: Colors.green),
-                          const SizedBox(width: 8),
                           const Text(
                             'Detailed Report',
                             style: TextStyle(
@@ -232,8 +216,6 @@ class EcgDetailScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const Icon(Icons.show_chart, color: Colors.purple),
-                          const SizedBox(width: 8),
                           const Text(
                             'ECG Waveform',
                             style: TextStyle(
@@ -273,13 +255,11 @@ class EcgDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMeasurementRow(String label, String value, IconData icon, Color color) {
+  Widget _buildMeasurementRow(String label, String value, Color color) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
-          Icon(icon, color: color, size: 24),
-          const SizedBox(width: 12),
           Expanded(
             child: Text(
               label,

@@ -97,7 +97,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
               child: SizedBox(
                 width: double.infinity,
                 child: CupertinoButton(
-                  color: const Color(0xFF153846),
+                  color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(12),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   onPressed: loginState.isLoading

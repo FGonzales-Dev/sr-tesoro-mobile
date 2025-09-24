@@ -33,8 +33,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('STMDC Patient App'),
-        backgroundColor: const Color(0xFF153846),
-        foregroundColor: Colors.white,
         actions: [
           // Profile section in header
           Padding(
@@ -48,12 +46,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 );
               },
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 radius: 16,
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).colorScheme.surface,
                 child: Icon(
                   Icons.person,
-                  color: Color(0xFF153846),
+                  color: Theme.of(context).colorScheme.primary,
                   size: 20,
                 ),
               ),
@@ -63,10 +61,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xFF153846),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white70,
+        selectedItemColor: Theme.of(context).colorScheme.onPrimary,
+        unselectedItemColor: Theme.of(context).colorScheme.onPrimary.withOpacity(0.7),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.monitor_heart), label: 'ECG'),
           BottomNavigationBarItem(icon: Icon(Icons.medical_services), label: 'X-ray'),

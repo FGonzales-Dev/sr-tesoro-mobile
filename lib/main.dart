@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'core/theme/app_theme.dart';
 import 'presentation/screens/auth/login_screen.dart';
 import 'presentation/screens/auth/splash_screen.dart';
 import 'presentation/screens/dashboard/dashboard_screen.dart';
@@ -41,10 +42,8 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Patient App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      title: 'STMDC Patient App',
+      theme: AppTheme.lightTheme,
       home: !_isSplashDone
           ? const SplashScreen()
           : !_isLoggedIn
