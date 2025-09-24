@@ -1,7 +1,14 @@
 import 'package:dio/dio.dart';
 import '../../core/constants/api_constants.dart';
-import '../models/lab_test_model.dart';
 import '../../domain/entities/lab_test.dart';
+import '../models/fecalysis_lab_test_model.dart';
+import '../models/pregnancy_lab_test_model.dart';
+import '../models/chemistry_lab_test_model.dart';
+import '../models/serology_lab_test_model.dart';
+import '../models/urinalysis_lab_test_model.dart';
+import '../models/ogtt_lab_test_model.dart';
+import '../models/cbc_lab_test_model.dart';
+import '../models/abo_blood_typing_lab_test_model.dart';
 
 class LabTestRemoteDataSource {
   final Dio dio;
@@ -28,6 +35,8 @@ class LabTestRemoteDataSource {
         return data.map((json) => OgttLabTestModel.fromJson(json)).toList();
       case 'cbc':
         return data.map((json) => CbcLabTestModel.fromJson(json)).toList();
+      case 'abo-blood-typing':
+        return data.map((json) => AboBloodTypingLabTestModel.fromJson(json)).toList();
       default:
         return [];
     }

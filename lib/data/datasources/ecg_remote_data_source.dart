@@ -7,11 +7,29 @@ class EcgRemoteDataSource {
   EcgRemoteDataSource(this.dio);
 
   Future<List<EcgRecordModel>> getEcgRecords(String accessToken) async {
-    final response = await dio.get(
-      '${ApiConstants.baseUrl}/patients/me/ecg-records/',
-      options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
-    );
-    final data = response.data as List;
-    return data.map((json) => EcgRecordModel.fromJson(json)).toList();
+    try {
+      print('Fetching ECG records from: ${ApiConstants.ecgRecords}');
+      print('Using access token: ${accessToken.substring(0, 10)}...');
+      
+      final response = await dio.get(
+        ApiConstants.ecgRecords,
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+      );
+      
+      print('ECG API response status: ${response.statusCode}');
+      print('ECG API response data: ${response.data}');
+      
+      if (response.data == null) {
+        throw Exception('ECG API response data is null');
+      }
+      
+      final data = response.data as List;
+      print('ECG records count: ${data.length}');
+      
+      return data.map((json) => EcgRecordModel.fromJson(json)).toList();
+    } catch (e) {
+      print('ECG API error: $e');
+      rethrow;
+    }
   }
 }

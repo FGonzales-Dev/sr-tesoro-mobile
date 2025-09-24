@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../presentation/viewmodels/login_viewmodel.dart';
-import '../presentation/viewmodels/consultation_viewmodel.dart';
-import '../presentation/viewmodels/ecg_viewmodel.dart';
-import '../presentation/viewmodels/lab_test_viewmodel.dart';
+import '../presentation/viewmodels/auth/login_viewmodel.dart';
+import '../presentation/viewmodels/consultation/consultation_viewmodel.dart';
+import '../presentation/viewmodels/ecg/ecg_viewmodel.dart';
+import '../presentation/viewmodels/lab_tests/lab_test_viewmodel.dart';
 import 'usecase_providers.dart';
 
 final loginViewModelProvider = StateNotifierProvider<LoginViewModel, AsyncValue<dynamic>>((ref) {

@@ -39,8 +39,8 @@ class EcgRecordModel extends EcgRecord {
       prInterval: (json['pr_interval'] as num).toDouble(),
       qrsDuration: (json['qrs_duration'] as num).toDouble(),
       qtInterval: (json['qt_interval'] as num).toDouble(),
-      ecgReport: json['ecg_report'],
-      interpretation: json['interpretation'],
+      ecgReport: json['ecg_report'] ?? '',
+      interpretation: json['interpretation'] ?? '',
       doctorName: json['doctor_name'],
       ecgStripUrl: json['ecg_strip_url'],
     );
