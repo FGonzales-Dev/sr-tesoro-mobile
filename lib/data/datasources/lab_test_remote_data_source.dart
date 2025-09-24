@@ -15,11 +15,20 @@ class LabTestRemoteDataSource {
   LabTestRemoteDataSource(this.dio);
 
   Future<List<LabTest>> getLabTests(String accessToken, String type) async {
+    print('LabTestRemoteDataSource: Fetching lab tests for type: $type');
+    print('LabTestRemoteDataSource: URL: ${ApiConstants.baseUrl}/patients/me/lab-tests/?type=$type');
+    
     final response = await dio.get(
       '${ApiConstants.baseUrl}/patients/me/lab-tests/?type=$type',
       options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
     );
+    
+    print('LabTestRemoteDataSource: Response status: ${response.statusCode}');
+    print('LabTestRemoteDataSource: Response data: ${response.data}');
+    
     final data = response.data as List;
+    print('LabTestRemoteDataSource: Data length: ${data.length}');
+    
     switch (type) {
       case 'fecalysis':
         return data.map((json) => FecalysisLabTestModel.fromJson(json)).toList();
@@ -28,7 +37,10 @@ class LabTestRemoteDataSource {
       case 'chemistry':
         return data.map((json) => ChemistryLabTestModel.fromJson(json)).toList();
       case 'serology':
-        return data.map((json) => SerologyLabTestModel.fromJson(json)).toList();
+        print('LabTestRemoteDataSource: Processing serology data...');
+        final serologyTests = data.map((json) => SerologyLabTestModel.fromJson(json)).toList();
+        print('LabTestRemoteDataSource: Serology tests count: ${serologyTests.length}');
+        return serologyTests;
       case 'urinalysis':
         return data.map((json) => UrinalysisLabTestModel.fromJson(json)).toList();
       case 'ogtt':
@@ -38,6 +50,7 @@ class LabTestRemoteDataSource {
       case 'abo-blood-typing':
         return data.map((json) => AboBloodTypingLabTestModel.fromJson(json)).toList();
       default:
+        print('LabTestRemoteDataSource: Unknown test type: $type');
         return [];
     }
   }

@@ -7,11 +7,15 @@ class LabTestViewModel extends StateNotifier<AsyncValue<List<LabTest>>> {
   LabTestViewModel(this.useCase) : super(const AsyncValue.data([]));
 
   Future<void> fetchLabTests(String accessToken, String type) async {
+    print('LabTestViewModel: fetchLabTests called for type: $type');
+    // Always set loading state and fetch fresh data
     state = const AsyncValue.loading();
     try {
       final tests = await useCase.getLabTests(accessToken, type);
+      print('LabTestViewModel: Received ${tests.length} tests for type: $type');
       state = AsyncValue.data(tests);
     } catch (e, st) {
+      print('LabTestViewModel: Error fetching lab tests: $e');
       state = AsyncValue.error(e, st);
     }
   }

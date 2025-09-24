@@ -49,14 +49,12 @@ class _LabTestListScreenState extends ConsumerState<LabTestListScreen> {
     print('Lab Test List init - Access token: ${token != null ? 'Present' : 'Null'}');
     print('Lab Test List init - Current state: ${labTestState.runtimeType}');
     
-    // Only fetch if we don't have data and we have a token
-    if (token != null && !labTestState.hasValue) {
+    // Always fetch data for the specific test type (don't skip if data exists)
+    if (token != null) {
       print('Lab Test List: Fetching ${widget.testType} tests...');
       ref.read(labTestViewModelProvider.notifier).fetchLabTests(token, widget.testType);
-    } else if (token == null) {
-      print('Lab Test List: No access token available');
     } else {
-      print('Lab Test List: Data already loaded, skipping fetch');
+      print('Lab Test List: No access token available');
     }
   }
 
