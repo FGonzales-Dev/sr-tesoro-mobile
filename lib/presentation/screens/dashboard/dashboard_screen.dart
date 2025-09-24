@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stmdc_patient_app/presentation/screens/consultation/consultation_tab.dart';
 import 'package:stmdc_patient_app/presentation/screens/ecg/ecg_tab.dart';
 import 'package:stmdc_patient_app/presentation/screens/lab_tests/lab_test_tab.dart';
+import 'package:stmdc_patient_app/presentation/screens/xray/xray_tab.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -15,7 +16,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   static final List<Widget> _pages = <Widget>[
     const EcgTab(),
-    const Center(child: Text('X-ray', style: TextStyle(fontSize: 32))),
+    const XrayTab(),
     const LabTestTab(),
     const ConsultationTab(),
     const Center(child: Text('Profile', style: TextStyle(fontSize: 32))),

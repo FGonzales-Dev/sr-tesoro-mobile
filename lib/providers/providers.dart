@@ -20,3 +20,6 @@ export 'lab_tests/pregnancy/pregnancy_viewmodel_provider.dart';
 export 'lab_tests/urinalysis/urinalysis_viewmodel_provider.dart';
 export 'lab_tests/ogtt/ogtt_viewmodel_provider.dart';
 export 'lab_tests/abo_blood_typing/abo_blood_typing_viewmodel_provider.dart';
+
+// X-ray providers
+export 'xray/xray_providers.dart';
