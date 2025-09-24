@@ -37,11 +37,11 @@ class FecalysisDetailScreen extends StatelessWidget {
               _buildInfoRow('Fecal Occult Blood', test.fecalOccultBlood),
               _buildInfoRow('FOBT Method', test.fobtMethod),
             ]),
-            if (test.remarks.isNotEmpty || test.others.isNotEmpty) ...[
+            if ((test.remarks?.isNotEmpty ?? false) || (test.others?.isNotEmpty ?? false)) ...[
               const SizedBox(height: 16),
               _buildSectionCard('Additional Information', Icons.note, Colors.purple, [
-                if (test.remarks.isNotEmpty) _buildInfoRow('Remarks', test.remarks),
-                if (test.others.isNotEmpty) _buildInfoRow('Others', test.others),
+                if (test.remarks?.isNotEmpty ?? false) _buildInfoRow('Remarks', test.remarks!),
+                if (test.others?.isNotEmpty ?? false) _buildInfoRow('Others', test.others!),
               ]),
             ],
           ],
@@ -99,13 +99,13 @@ class FecalysisDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(String label, String value) {
+  Widget _buildInfoRow(String label, String? value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
           Expanded(child: Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500))),
-          Text(value, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          Text(value ?? 'Not specified', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         ],
       ),
     );

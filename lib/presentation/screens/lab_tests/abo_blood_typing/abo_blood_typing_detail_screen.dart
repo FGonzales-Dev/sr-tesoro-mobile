@@ -41,16 +41,16 @@ class AboBloodTypingDetailScreen extends StatelessWidget {
             const SizedBox(height: 16),
             
             // Additional Information
-            if (test.remarks.isNotEmpty || test.others.isNotEmpty) ...[
+            if ((test.remarks?.isNotEmpty ?? false) || (test.others?.isNotEmpty ?? false)) ...[
               _buildSectionCard(
                 'Additional Information',
                 Icons.note,
                 Colors.green,
                 [
-                  if (test.remarks.isNotEmpty)
-                    _buildInfoRow('Remarks', test.remarks),
-                  if (test.others.isNotEmpty)
-                    _buildInfoRow('Others', test.others),
+                  if (test.remarks?.isNotEmpty ?? false)
+                    _buildInfoRow('Remarks', test.remarks!),
+                  if (test.others?.isNotEmpty ?? false)
+                    _buildInfoRow('Others', test.others!),
                 ],
               ),
             ],
@@ -164,7 +164,7 @@ class AboBloodTypingDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBloodTypeRow(String label, String value) {
+  Widget _buildBloodTypeRow(String label, String? value) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.all(16),
@@ -190,7 +190,7 @@ class AboBloodTypingDetailScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              value,
+              value ?? 'Not specified',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,

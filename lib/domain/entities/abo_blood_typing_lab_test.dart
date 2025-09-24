@@ -1,10 +1,10 @@
 import 'lab_test.dart';
 
 class AboBloodTypingLabTest extends LabTest {
-  final String bloodType;
-  final String rhFactor;
-  final String remarks;
-  final String others;
+  final String? bloodType;
+  final String? rhFactor;
+  final String? remarks;
+  final String? others;
 
   AboBloodTypingLabTest({
     required int id,
@@ -13,10 +13,10 @@ class AboBloodTypingLabTest extends LabTest {
     required String status,
     required String medtechName,
     required String testType,
-    required this.bloodType,
-    required this.rhFactor,
-    required this.remarks,
-    required this.others,
+    this.bloodType,
+    this.rhFactor,
+    this.remarks,
+    this.others,
   }) : super(
           id: id,
           dateAccepted: dateAccepted,

@@ -9,9 +9,9 @@ class AboBloodTypingLabTestModel extends AboBloodTypingLabTest {
           status: json['status'],
           medtechName: json['medtech_name'],
           testType: json['test_type'],
-          bloodType: json['blood_type'] ?? '',
-          rhFactor: json['rh_factor'] ?? '',
-          remarks: json['remarks'] ?? '',
-          others: json['others'] ?? '',
+          bloodType: json['blood_type'],
+          rhFactor: json['rh_factor'],
+          remarks: json['remarks'],
+          others: json['others'],
         );
 }

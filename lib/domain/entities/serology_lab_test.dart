@@ -1,12 +1,12 @@
 import 'lab_test.dart';
 
 class SerologyLabTest extends LabTest {
-  final String hiv12;
-  final String hbsag;
-  final String syphilis;
-  final String dengueNs1;
-  final String dengueIgm;
-  final String dengueIgg;
+  final String? hiv12;
+  final String? hbsag;
+  final String? syphilis;
+  final String? dengueNs1;
+  final String? dengueIgm;
+  final String? dengueIgg;
 
   SerologyLabTest({
     required int id,
@@ -15,12 +15,12 @@ class SerologyLabTest extends LabTest {
     required String status,
     required String medtechName,
     required String testType,
-    required this.hiv12,
-    required this.hbsag,
-    required this.syphilis,
-    required this.dengueNs1,
-    required this.dengueIgm,
-    required this.dengueIgg,
+    this.hiv12,
+    this.hbsag,
+    this.syphilis,
+    this.dengueNs1,
+    this.dengueIgm,
+    this.dengueIgg,
   }) : super(
           id: id,
           dateAccepted: dateAccepted,

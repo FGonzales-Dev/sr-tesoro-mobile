@@ -27,11 +27,11 @@ class OgttDetailScreen extends StatelessWidget {
               _buildMeasurementRow('2 Hours', test.twoHours, 'mg/dL'),
               _buildMeasurementRow('Fasting', test.fasting, 'mg/dL'),
             ]),
-            if (test.remarks.isNotEmpty || test.others.isNotEmpty) ...[
+            if ((test.remarks?.isNotEmpty ?? false) || (test.others?.isNotEmpty ?? false)) ...[
               const SizedBox(height: 16),
               _buildSectionCard('Additional Information', Icons.note, Colors.green, [
-                if (test.remarks.isNotEmpty) _buildInfoRow('Remarks', test.remarks),
-                if (test.others.isNotEmpty) _buildInfoRow('Others', test.others),
+                if (test.remarks?.isNotEmpty ?? false) _buildInfoRow('Remarks', test.remarks!),
+                if (test.others?.isNotEmpty ?? false) _buildInfoRow('Others', test.others!),
               ]),
             ],
           ],
@@ -89,19 +89,19 @@ class OgttDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMeasurementRow(String label, String value, String unit) {
+  Widget _buildMeasurementRow(String label, String? value, String unit) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
           Expanded(child: Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500))),
-          Text('$value $unit', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          Text('${value ?? 'Not specified'} $unit', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         ],
       ),
     );
   }
 
-  Widget _buildInfoRow(String label, String value) {
+  Widget _buildInfoRow(String label, String? value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -109,7 +109,7 @@ class OgttDetailScreen extends StatelessWidget {
         children: [
           Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           const SizedBox(height: 4),
-          Text(value, style: const TextStyle(fontSize: 14)),
+          Text(value ?? 'Not specified', style: const TextStyle(fontSize: 14)),
         ],
       ),
     );

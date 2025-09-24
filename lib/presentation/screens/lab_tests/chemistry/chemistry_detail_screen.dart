@@ -187,7 +187,7 @@ class ChemistryDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMeasurementRow(String label, String value, String unit) {
+  Widget _buildMeasurementRow(String label, String? value, String unit) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -202,7 +202,7 @@ class ChemistryDetailScreen extends StatelessWidget {
             ),
           ),
           Text(
-            '$value $unit',
+            '${value ?? 'Not specified'} $unit',
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,

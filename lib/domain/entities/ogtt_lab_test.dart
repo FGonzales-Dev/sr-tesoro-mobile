@@ -1,12 +1,12 @@
 import 'lab_test.dart';
 
 class OgttLabTest extends LabTest {
-  final String fastingGlucose;
-  final String oneHour;
-  final String twoHours;
-  final String fasting;
-  final String remarks;
-  final String others;
+  final String? fastingGlucose;
+  final String? oneHour;
+  final String? twoHours;
+  final String? fasting;
+  final String? remarks;
+  final String? others;
 
   OgttLabTest({
     required int id,
@@ -15,12 +15,12 @@ class OgttLabTest extends LabTest {
     required String status,
     required String medtechName,
     required String testType,
-    required this.fastingGlucose,
-    required this.oneHour,
-    required this.twoHours,
-    required this.fasting,
-    required this.remarks,
-    required this.others,
+    this.fastingGlucose,
+    this.oneHour,
+    this.twoHours,
+    this.fasting,
+    this.remarks,
+    this.others,
   }) : super(
           id: id,
           dateAccepted: dateAccepted,

@@ -24,11 +24,11 @@ class PregnancyDetailScreen extends StatelessWidget {
             _buildSectionCard('Test Results', Icons.child_care, Colors.pink, [
               _buildResultRow('Pregnancy Test Result', test.ptResult),
             ]),
-            if (test.remarks.isNotEmpty || test.others.isNotEmpty) ...[
+            if ((test.remarks?.isNotEmpty ?? false) || (test.others?.isNotEmpty ?? false)) ...[
               const SizedBox(height: 16),
               _buildSectionCard('Additional Information', Icons.note, Colors.green, [
-                if (test.remarks.isNotEmpty) _buildInfoRow('Remarks', test.remarks),
-                if (test.others.isNotEmpty) _buildInfoRow('Others', test.others),
+                if (test.remarks?.isNotEmpty ?? false) _buildInfoRow('Remarks', test.remarks!),
+                if (test.others?.isNotEmpty ?? false) _buildInfoRow('Others', test.others!),
               ]),
             ],
           ],
@@ -86,25 +86,25 @@ class PregnancyDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildResultRow(String label, String result) {
+  Widget _buildResultRow(String label, String? result) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: _getResultColor(result),
+        color: _getResultColor(result ?? ''),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white)),
-          Text(result, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+          Text(result ?? 'Not specified', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
         ],
       ),
     );
   }
 
-  Widget _buildInfoRow(String label, String value) {
+  Widget _buildInfoRow(String label, String? value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -112,7 +112,7 @@ class PregnancyDetailScreen extends StatelessWidget {
         children: [
           Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           const SizedBox(height: 4),
-          Text(value, style: const TextStyle(fontSize: 14)),
+          Text(value ?? 'Not specified', style: const TextStyle(fontSize: 14)),
         ],
       ),
     );

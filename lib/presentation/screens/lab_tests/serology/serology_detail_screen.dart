@@ -109,7 +109,7 @@ class SerologyDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTestRow(String label, String result) {
+  Widget _buildTestRow(String label, String? result) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -120,11 +120,11 @@ class SerologyDetailScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             decoration: BoxDecoration(
-              color: _getResultColor(result),
+              color: _getResultColor(result ?? ''),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              result,
+              result ?? 'Not specified',
               style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
             ),
           ),

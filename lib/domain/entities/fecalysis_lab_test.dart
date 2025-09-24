@@ -1,16 +1,16 @@
 import 'lab_test.dart';
 
 class FecalysisLabTest extends LabTest {
-  final String color;
-  final String consistency;
-  final String rbc;
-  final String wbc;
-  final String yeast;
-  final String cystTroph;
-  final String fecalOccultBlood;
-  final String fobtMethod;
-  final String remarks;
-  final String others;
+  final String? color;
+  final String? consistency;
+  final String? rbc;
+  final String? wbc;
+  final String? yeast;
+  final String? cystTroph;
+  final String? fecalOccultBlood;
+  final String? fobtMethod;
+  final String? remarks;
+  final String? others;
 
   FecalysisLabTest({
     required int id,
@@ -19,16 +19,16 @@ class FecalysisLabTest extends LabTest {
     required String status,
     required String medtechName,
     required String testType,
-    required this.color,
-    required this.consistency,
-    required this.rbc,
-    required this.wbc,
-    required this.yeast,
-    required this.cystTroph,
-    required this.fecalOccultBlood,
-    required this.fobtMethod,
-    required this.remarks,
-    required this.others,
+    this.color,
+    this.consistency,
+    this.rbc,
+    this.wbc,
+    this.yeast,
+    this.cystTroph,
+    this.fecalOccultBlood,
+    this.fobtMethod,
+    this.remarks,
+    this.others,
   }) : super(
           id: id,
           dateAccepted: dateAccepted,

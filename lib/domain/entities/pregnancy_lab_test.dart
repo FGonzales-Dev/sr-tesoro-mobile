@@ -1,9 +1,9 @@
 import 'lab_test.dart';
 
 class PregnancyLabTest extends LabTest {
-  final String ptResult;
-  final String remarks;
-  final String others;
+  final String? ptResult;
+  final String? remarks;
+  final String? others;
 
   PregnancyLabTest({
     required int id,
@@ -12,9 +12,9 @@ class PregnancyLabTest extends LabTest {
     required String status,
     required String medtechName,
     required String testType,
-    required this.ptResult,
-    required this.remarks,
-    required this.others,
+    this.ptResult,
+    this.remarks,
+    this.others,
   }) : super(
           id: id,
           dateAccepted: dateAccepted,

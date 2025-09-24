@@ -76,16 +76,16 @@ class CbcDetailScreen extends StatelessWidget {
             const SizedBox(height: 16),
             
             // Additional Information
-            if (test.remarks.isNotEmpty || test.others.isNotEmpty) ...[
+            if ((test.remarks?.isNotEmpty ?? false) || (test.others?.isNotEmpty ?? false)) ...[
               _buildSectionCard(
                 'Additional Information',
                 Icons.note,
                 Colors.green,
                 [
-                  if (test.remarks.isNotEmpty)
-                    _buildInfoRow('Remarks', test.remarks),
-                  if (test.others.isNotEmpty)
-                    _buildInfoRow('Others', test.others),
+                  if (test.remarks?.isNotEmpty ?? false)
+                    _buildInfoRow('Remarks', test.remarks!),
+                  if (test.others?.isNotEmpty ?? false)
+                    _buildInfoRow('Others', test.others!),
                 ],
               ),
             ],
@@ -199,7 +199,7 @@ class CbcDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMeasurementRow(String label, String value, String unit) {
+  Widget _buildMeasurementRow(String label, String? value, String unit) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -214,7 +214,7 @@ class CbcDetailScreen extends StatelessWidget {
             ),
           ),
           Text(
-            '$value $unit',
+            '${value ?? 'Not specified'} $unit',
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -225,7 +225,7 @@ class CbcDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(String label, String value) {
+  Widget _buildInfoRow(String label, String? value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -240,7 +240,7 @@ class CbcDetailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            value,
+            value ?? 'Not specified',
             style: const TextStyle(
               fontSize: 14,
             ),
