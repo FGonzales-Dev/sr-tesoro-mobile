@@ -12,8 +12,11 @@ class AboBloodTypingLabTestViewModel extends StateNotifier<AsyncValue<List<AboBl
     }
     try {
       final tests = await useCase.getLabTests(accessToken, 'abo-blood-typing');
-      state = AsyncValue.data(tests.cast<AboBloodTypingLabTest>());
+      // Safely cast to AboBloodTypingLabTest, return empty list if casting fails
+      final aboBloodTypingTests = tests.whereType<AboBloodTypingLabTest>().toList();
+      state = AsyncValue.data(aboBloodTypingTests);
     } catch (e, st) {
+      print('AboBloodTypingLabTestViewModel: Error fetching tests: $e');
       state = AsyncValue.error(e, st);
     }
   }
@@ -22,8 +25,11 @@ class AboBloodTypingLabTestViewModel extends StateNotifier<AsyncValue<List<AboBl
     state = const AsyncValue.loading();
     try {
       final tests = await useCase.getLabTests(accessToken, 'abo-blood-typing');
-      state = AsyncValue.data(tests.cast<AboBloodTypingLabTest>());
+      // Safely cast to AboBloodTypingLabTest, return empty list if casting fails
+      final aboBloodTypingTests = tests.whereType<AboBloodTypingLabTest>().toList();
+      state = AsyncValue.data(aboBloodTypingTests);
     } catch (e, st) {
+      print('AboBloodTypingLabTestViewModel: Error refreshing tests: $e');
       state = AsyncValue.error(e, st);
     }
   }

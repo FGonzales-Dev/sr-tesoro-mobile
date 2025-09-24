@@ -48,7 +48,22 @@ class LabTestRemoteDataSource {
       case 'cbc':
         return data.map((json) => CbcLabTestModel.fromJson(json)).toList();
       case 'abo-blood-typing':
-        return data.map((json) => AboBloodTypingLabTestModel.fromJson(json)).toList();
+        print('LabTestRemoteDataSource: Processing ABO blood typing data...');
+        print('LabTestRemoteDataSource: Available test types in response: ${data.map((json) => json['test_type']).toSet()}');
+        // Filter only records that actually have ABO blood typing test type
+        final aboBloodTypingData = data.where((json) => 
+          json['test_type'] == 'ABO Blood Typing' || 
+          json['test_type'] == 'abo-blood-typing' ||
+          json['test_type'] == 'Blood Typing' ||
+          json['test_type'] == 'ABO' ||
+          json['test_type']?.toString().toLowerCase().contains('blood') == true ||
+          json['test_type']?.toString().toLowerCase().contains('typing') == true
+        ).toList();
+        print('LabTestRemoteDataSource: Filtered ABO blood typing records: ${aboBloodTypingData.length}');
+        if (aboBloodTypingData.isEmpty) {
+          print('LabTestRemoteDataSource: No ABO blood typing tests found in the data');
+        }
+        return aboBloodTypingData.map((json) => AboBloodTypingLabTestModel.fromJson(json)).toList();
       default:
         print('LabTestRemoteDataSource: Unknown test type: $type');
         return [];
