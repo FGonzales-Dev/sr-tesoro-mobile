@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../providers/providers.dart';
-import 'ecg_detail_screen.dart';
+import '../../../domain/entities/ecg_record.dart';
+import 'ecg_card.dart';
 
 class EcgTab extends ConsumerStatefulWidget {
   const EcgTab({Key? key}) : super(key: key);
@@ -102,21 +103,7 @@ class _EcgTabState extends ConsumerState<EcgTab> {
         final r = records[index];
         return Card(
           margin: const EdgeInsets.all(8),
-          child: ListTile(
-            leading: const Icon(Icons.favorite, color: Colors.red),
-            title: Text(r.doctorName),
-            subtitle: Text('Date: ${r.createdAt.day}/${r.createdAt.month}/${r.createdAt.year}\nStatus: ${r.status}\nHeart Rate: ${r.heartRate} BPM'),
-            isThreeLine: true,
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EcgDetailScreen(record: r),
-                ),
-              );
-            },
-          ),
+          child: EcgCard(record: r),
         );
       },
     );
